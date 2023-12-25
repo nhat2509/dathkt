@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Search Box</title>
+    <script>
+        function searchVideos() {
+            var searchTerm = document.getElementById('search-text').value;
+            console.log("Đã tìm kiếm video với từ khóa: " + searchTerm);
+        }
+
+        function refreshSearch() {
+            document.getElementById('search-text').value = '';
+            console.log("Đã làm mới tìm kiếm");
+        }
+    </script>
+</head>
+<body>
+<Style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #B33771;
+        min-height: 100vh;
+    }
+    #search-box{
+        background: #fff;
+        border-radius: 30px;
+    }
+    #search-box #search-text{
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 18px;
+        width: 0;
+        padding: 0;
+        transition: all 0.25s ease-in-out;
+    }
+    #search-box #refresh-btn{
+        background-color: #fff;
+        cursor: pointer;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 18px;
+    }
+    #search-box #search-btn{
+        background-color: #fff;
+        cursor: pointer;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 18px;
+    }
+    #search-box #search-text, #search-box #search-text:valid{
+        width: 300px;
+        padding: 10px 0px 10px 15px;
+
+    }
+</Style>
+
+
+<form action="/search"method="post" th:object="${search}" id="search-box">
+    <input type="text" id="search-text" placeholder="Bạn muốn tìm gì?" required>
+    <button id="refresh-btn" onclick="refreshSearch()">
+        <i class="fas fa-sync-alt"></i>
+    </button>
+    <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+</body>
+</html>
