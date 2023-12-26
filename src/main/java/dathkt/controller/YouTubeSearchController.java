@@ -15,18 +15,20 @@ public class YouTubeSearchController {
 
     @Autowired
     public YouTubeSearchController(YouTubeAPIService youTubeAPIService) {
-
         this.youTubeAPIService = youTubeAPIService;
     }
+
     @GetMapping("/search")
-    public String index(){
+    public String index() {
 
         return "search/index";
     }
 
-    @PostMapping ("/search")
+    @PostMapping("/search")
     public String search(@RequestParam("searchTerm") String searchTerm, Model model) {
-        String searchResult = youTubeAPIService.searchVideos(searchTerm);
+
+        Object searchResult = youTubeAPIService.searchVideos(searchTerm);
+
         // Xử lý kết quả tìm kiếm nếu cần và đưa vào model để trả về giao diện
         model.addAttribute("searchResult", searchResult);
         return "search/result";
